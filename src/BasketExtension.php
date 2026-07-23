@@ -91,7 +91,7 @@ class BasketExtension extends Extension {
 	public function getWarenkorbData(){
 		$request = Injector::inst()->get(HTTPRequest::class);
 		$session = $request->getSession();
-		return $session->get('warenkorb');
+		return $session->get('warenkorb') ?? '';
 	}
 	function getSession(){
 		$request = Injector::inst()->get(HTTPRequest::class);
