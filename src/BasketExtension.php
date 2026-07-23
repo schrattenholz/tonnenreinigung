@@ -5,7 +5,7 @@ namespace Schrattenholz\Tonnenreinigung;
 use SilverStripe\Core\Extension; 
 use SilverStripe\ORM\DataList;
 use SilverStripe\ORM\ArrayList;
-use SilverStripe\View\ArrayData;
+use SilverStripe\Model\ArrayData;
 use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Control\HTTPRequest;
 use SilverStripe\Core\Injector\Injector;
@@ -108,7 +108,7 @@ class BasketExtension extends Extension {
 		
 		foreach(explode('|||',$this->getWarenkorbData()) as $tonne){
 			$tmpAr=explode('+++',$tonne);		
-			// Alle Produkte ausser dem zu löschenden Produkt werden im neuen Warenkorb gespeichert
+			// Alle Produkte ausser dem zu lï¿½schenden Produkt werden im neuen Warenkorb gespeichert
 			if($tmpAr[0]==$this->getOwner()->ID){
 				$aktTonne=$tmpAr;
 				return new ArrayData(array("anz_tonnen"=>$aktTonne[1],"anz_reinigungen"=>$aktTonne[2],"zeit_woche"=>$aktTonne[3],"zeit_tag"=>$aktTonne[4]));
@@ -121,7 +121,7 @@ class BasketExtension extends Extension {
 		$newBasket=array();
 		foreach(explode('|||',$this->getWarenkorbData()) as $tonne){
 			$tmpAr=explode('+++',$tonne);		
-			// Alle Produkte ausser dem zu löschenden Produkt werden im neuen Warenkorb gespeichert
+			// Alle Produkte ausser dem zu lï¿½schenden Produkt werden im neuen Warenkorb gespeichert
 			if($tmpAr[0]!=$data['id']){
 				array_push($newBasket,$tonne);
 			}		
@@ -169,7 +169,7 @@ class BasketExtension extends Extension {
 
 		if($tonnenDaten['anz_tonnen']!=0 && $tonnenDaten['anz_reinigungen']!='no' && $tonnenDaten['zeit_woche']!='no' && $tonnenDaten['zeit_tag']!='no'){
 			if($action=="new"){
-				// Prüfen, ob das Produkt bereits in der Session abgelegt ist
+				// Prï¿½fen, ob das Produkt bereits in der Session abgelegt ist
 				//if($this->noDouble($tonnenDaten['id'])){
 				if($this->noDouble($tonnenDaten['id'])){
 					$list=explode('|||',$this->getWarenkorbData());
@@ -209,7 +209,7 @@ class BasketExtension extends Extension {
 		}
 	}
 	
-	// Prüft ob das aktuelle Produkt bereits in der Session angelegt wurde
+	// Prï¿½ft ob das aktuelle Produkt bereits in der Session angelegt wurde
 	function noDouble($tonnenID){	
 		foreach(explode('|||',$this->getWarenkorbData()) as $tonne){
 			$tmpAr=explode('+++',$tonne);
@@ -273,7 +273,7 @@ class BasketExtension extends Extension {
     ])
     ->setFrom("system@amp-bayern.com")
     ->setTo($this->getCheckoutAdress()->Email)
-    ->setSubject(utf8_encode("Bestellbestätigung Tonnenreinigung - amp-bayern.com"));
+    ->setSubject(utf8_encode("Bestellbestï¿½tigung Tonnenreinigung - amp-bayern.com"));
 	$email->send();
 		//$email = new Email("webseite@amp-bayern.com", "stein@amp-bayern.com", "Neue Tonnenreinigung-Bestellung", "");
 		/*

@@ -8,7 +8,7 @@ use PageController;
 
 use SilverStripe\ORM\DataList;
 use SilverStripe\ORM\ArrayList;
-use SilverStripe\View\ArrayData;
+use SilverStripe\Model\ArrayData;
 
 class Tonnenreinigungsformular extends Page{
 
