@@ -3,6 +3,7 @@
 namespace Schrattenholz\Tonnenreinigung;
 
 use SilverStripe\ORM\DataObject;
+use SilverStripe\CMS\Model\SiteTree;
 
 class ShopConfig extends DataObject
 {
@@ -11,12 +12,12 @@ class ShopConfig extends DataObject
 	);
 	private static $table_name="shopconfig";
 	private static $has_one=array(
-		"Basket"=>"SiteTree",
-		"CheckoutAdress"=>"SiteTree",
-		"CheckoutSummary"=>"SiteTree",
-		"CheckoutFinal"=>"SiteTree",
-		"ProductRoot"=>"SiteTree",
-		"AGB"=>"SiteTree"
+		"Basket"=>SiteTree::class,
+		"CheckoutAdress"=>SiteTree::class,
+		"CheckoutSummary"=>SiteTree::class,
+		"CheckoutFinal"=>SiteTree::class,
+		"ProductRoot"=>SiteTree::class,
+		"AGB"=>SiteTree::class
 	);
 
 	private static $singular_name="Shop Konfiguration";
