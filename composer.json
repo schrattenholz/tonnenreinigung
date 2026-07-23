@@ -1,0 +1,20 @@
+{
+    "name": "schrattenholz/tonnenreinigung",
+    "description": "Tonnenreinigung shop/checkout extension for AMP Bayern",
+    "type": "silverstripe-vendormodule",
+    "license": "proprietary",
+    "require": {
+        "php": ">=5.6.0",
+        "silverstripe/recipe-cms": "^4.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Schrattenholz\\Tonnenreinigung\\": "src/"
+        }
+    },
+    "extra": {
+        "expose": [
+            "templates"
+        ]
+    }
+}
