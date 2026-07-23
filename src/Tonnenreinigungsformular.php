@@ -7,7 +7,7 @@ use Page;
 use PageController;
 
 use SilverStripe\ORM\DataList;
-use SilverStripe\ORM\ArrayList;
+use SilverStripe\Model\List\ArrayList;
 use SilverStripe\Model\ArrayData;
 
 class Tonnenreinigungsformular extends Page{
@@ -37,7 +37,7 @@ class Tonnenreinigungsformular_Controller extends PageController{
 	$days['do']="donnerstags";
 	$days['fr']="freitags";
 	$days['sa']="samstags";
-		$personDaten=json_decode(utf8_decode($data['person']),true);
+		$personDaten=json_decode(mb_convert_encoding($data['person'], 'ISO-8859-1', 'UTF-8'),true);
 		$tonnenDaten=json_decode($data['daten'],true);
 		$zahlungsart=$data['zahlungsart'];
 		$str="";
@@ -98,7 +98,7 @@ class Tonnenreinigungsformular_Controller extends PageController{
 	$days['do']="donnerstags";
 	$days['fr']="freitags";
 	$days['sa']="samstags";
-		$personDaten=json_decode(utf8_decode($data['person']),true);
+		$personDaten=json_decode(mb_convert_encoding($data['person'], 'ISO-8859-1', 'UTF-8'),true);
 		$tonnenDaten=json_decode($data['daten'],true);
 		$zahlungsart=$data['zahlungsart'];
 		$str="";

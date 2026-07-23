@@ -4,7 +4,7 @@ namespace Schrattenholz\Tonnenreinigung;
 
 use SilverStripe\Core\Extension; 
 use SilverStripe\ORM\DataList;
-use SilverStripe\ORM\ArrayList;
+use SilverStripe\Model\List\ArrayList;
 use SilverStripe\Model\ArrayData;
 use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Control\HTTPRequest;
@@ -28,8 +28,8 @@ class BasketExtension extends Extension {
 	);
 	function utf8_urldecode($str) {
 		$str = preg_replace("/%u([0-9a-f]{3,4})/i","&#x\\1;",urldecode($str));
-		return html_entity_decode($str,null,'UTF-8');;
-	} 
+		return html_entity_decode($str,ENT_QUOTES,'UTF-8');
+	}
 	public function getLocations(){
 	
 		return Stadt::get();
@@ -163,7 +163,7 @@ class BasketExtension extends Extension {
 	public function addToList($data){
 		$error=false;
 		$action=$data['action'];
-		$tonnenDaten=json_decode(utf8_encode($data['tonne']),true);
+		$tonnenDaten=json_decode(mb_convert_encoding($data['tonne'], 'UTF-8', 'ISO-8859-1'),true);
 		
 		//Daten validieren
 
@@ -265,7 +265,7 @@ class BasketExtension extends Extension {
 	function makeOrder(){
 			
 	$email = Email::create()
-    ->setHTMLTemplate('Silverstripe\\Tonnenreinigung\\Layout\\ConfirmationClient') 
+    ->setHTMLTemplate('Schrattenholz\\Tonnenreinigung\\Layout\\ConfirmationClient')
     ->setData([
 			'BaseHref' => $_SERVER['DOCUMENT_ROOT'],
 			'Basket' => $this->getBasket(),
@@ -273,7 +273,7 @@ class BasketExtension extends Extension {
     ])
     ->setFrom("system@amp-bayern.com")
     ->setTo($this->getCheckoutAdress()->Email)
-    ->setSubject(utf8_encode("Bestellbest�tigung Tonnenreinigung - amp-bayern.com"));
+    ->setSubject(mb_convert_encoding("Bestellbest\xE4tigung Tonnenreinigung - amp-bayern.com", 'UTF-8', 'ISO-8859-1'));
 	$email->send();
 		//$email = new Email("webseite@amp-bayern.com", "stein@amp-bayern.com", "Neue Tonnenreinigung-Bestellung", "");
 		/*
@@ -288,7 +288,7 @@ class BasketExtension extends Extension {
 		*/
 		
 	$email = Email::create()
-    ->setHTMLTemplate('Silverstripe\\Tonnenreinigung\\Layout\\Confirmation') 
+    ->setHTMLTemplate('Schrattenholz\\Tonnenreinigung\\Layout\\Confirmation')
     ->setData([
         'BaseHref' => $_SERVER['DOCUMENT_ROOT'],
 		'Basket' => $this->getBasket(),
